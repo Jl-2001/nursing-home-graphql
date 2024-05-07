@@ -52,11 +52,22 @@ const resolvers = {
         addHome(_, args) {
             let home = {
                 ...args.home,
-                id: Home.floor(Math.random() * 10000).toString()
+                id: Math.floor(Math.random() * 10000).toString()
             }
             db.homes.push(home)
 
             return home
+        },
+        updateHome(_, args) {
+            db.homes = db.homes.map((h) => {
+                if (h.id === args.id) {
+                    return {...h, ...args.edits}
+                }
+
+                return h
+            })
+
+            return db.homes.find((h) => h.id === args.id)
         }
     }
 }

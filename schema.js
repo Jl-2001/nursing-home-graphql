@@ -30,10 +30,15 @@ export const typeDefs =
     type Mutation {
         addHome(home: AddHomeInput!): Home
         deleteHome(id: ID!): [Home]
+        updateHome(id: ID!, edits: EditHomeInput!): Home
     }
     input AddHomeInput {
         title: String!,
-        platform: [String!]!
+        location: [String!]!
+    }
+    input EditHomeInput {
+        title: String!,
+        location: [String!]!
     }
 `
 
